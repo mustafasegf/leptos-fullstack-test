@@ -3,7 +3,7 @@ use leptos::*;
 
 cfg_if! {
 if #[cfg(feature = "ssr")] {
-    use axum::{extract::Extension, routing::get, routing::post, Router};
+    use axum::{extract::Extension, routing::post, Router};
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use leptos_start::file::file_handler;
     use std::sync::Arc;
