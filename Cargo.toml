@@ -1,7 +1,7 @@
 [workspace]
-members = ["leptos-server", "prisma-cli"]
+members = ["leptos-project", "prisma-cli"]
 
 [[workspace.metadata.leptos]]
-name = "leptos-server"
-bin-package = "leptos-server"
-lib-package = "leptos-server"
+name = "leptos-project"
+bin-package = "leptos-project"
+lib-package = "leptos-project"

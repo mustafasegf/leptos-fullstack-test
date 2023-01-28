@@ -5,9 +5,9 @@ cfg_if! {
 if #[cfg(feature = "ssr")] {
     use axum::{extract::Extension, routing::post, Router};
     use leptos_axum::{generate_route_list, LeptosRoutes};
-    use leptos_start::file::file_handler;
+    use leptos_project::file::file_handler;
     use std::sync::Arc;
-    use leptos_start::app::*;
+    use leptos_project::app::*;
 
     #[tokio::main]
     async fn main()  {
@@ -36,7 +36,7 @@ if #[cfg(feature = "ssr")] {
     // use actix_web::*;
     // use leptos::*;
     // use leptos_actix::{generate_route_list, LeptosRoutes};
-    // use leptos_start::app::*;
+    // use leptos_project::app::*;
     //
     // let conf = get_configuration(None).await.unwrap();
     // let addr = conf.leptos_options.site_address;
