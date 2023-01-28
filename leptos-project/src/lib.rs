@@ -1,6 +1,14 @@
 use cfg_if::cfg_if;
 pub mod app;
 pub mod file;
+// pub mod prisma::{user};
+
+cfg_if! {
+    if #[cfg(feature = "ssr")] {
+        pub mod prisma;
+    }
+
+}
 
 cfg_if! {
 if #[cfg(feature = "hydrate")] {

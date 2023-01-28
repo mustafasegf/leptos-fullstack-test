@@ -36,6 +36,7 @@ git = "https://github.com/Brendonovich/prisma-client-rust"
 tag = "0.6.4"
 default-features = false
 features = ["sqlite"]
+optional = true
 
 [features]
 default = ["ssr"]
@@ -47,6 +48,7 @@ ssr = [
   "dep:tower-http",
   "dep:tokio",
   "dep:http",
+  "dep:prisma-client-rust",
   "leptos/ssr",
   "leptos_meta/ssr",
   "leptos_router/ssr",
@@ -54,7 +56,7 @@ ssr = [
 ]
 
 [package.metadata.cargo-all-features]
-denylist = ["axum", "tower", "tower-http", "tokio", "leptos_axum"]
+denylist = ["axum", "tower", "tower-http", "tokio", "leptos_axum", "prisma-client-rust"]
 skip_feature_sets = [["csr", "ssr"], ["csr", "hydrate"], ["ssr", "hydrate"]]
 
 [package.metadata.leptos]
