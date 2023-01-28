@@ -1,8 +1,8 @@
 use cfg_if::cfg_if;
-use leptos::*;
 
 cfg_if! {
 if #[cfg(feature = "ssr")] {
+    use leptos::*;
     use axum::{extract::Extension, routing::post, Router};
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use leptos_project::file::file_handler;
