@@ -1,7 +1,8 @@
 use cfg_if::cfg_if;
 pub mod app;
 pub mod file;
-// pub mod prisma::{user};
+
+// pub mod prisma;
 
 cfg_if! {
     if #[cfg(feature = "ssr")] {

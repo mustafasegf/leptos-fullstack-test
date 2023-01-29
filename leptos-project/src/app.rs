@@ -7,13 +7,23 @@ cfg_if! {
     if #[cfg(feature = "ssr")] {
         // use http::{header::SET_COOKIE, HeaderMap, HeaderValue, StatusCode};
         use prisma_client_rust::NewClientError;
+        use crate::prisma::user::Data as UserData;
         use crate::prisma::PrismaClient;
 
-        // pub fn register_server_functions() {
-        //     _ = GetUsers::register();
-        // }
+        pub fn register_server_functions() {
+            _ = GetUsers::register();
+        }
 
-    } else { }
+    } else {
+
+    #[derive(Debug, Clone, :: serde :: Serialize, :: serde :: Deserialize)]
+    pub struct UserData {
+        #[serde(rename = "id")]
+        pub id: String,
+        #[serde(rename = "displayName")]
+        pub display_name: String,
+    }
+    }
 }
 
 #[component]
@@ -80,21 +90,21 @@ fn HomePage(cx: Scope) -> impl IntoView {
     }
 }
 
-// #[server(GetUsers, "/api")]
-// pub async fn get_users() -> Result<Vec<user::Data>, ServerFnError> {
-//     let client: Result<PrismaClient, NewClientError> = PrismaClient::_builder().build().await;
-//     let client = match client {
-//         Ok(client) => client,
-//         Err(e) => return Err(ServerFnError::ServerError(e.to_string())),
-//     };
-//
-//     let users: Vec<user::Data> = match client.user().find_many(vec![]).exec().await {
-//         Ok(users) => users,
-//         Err(e) => return Err(ServerFnError::ServerError(e.to_string())),
-//     };
-//
-//     Ok(users)
-// }
+#[server(GetUsers, "/api")]
+pub async fn get_users() -> Result<Vec<UserData>, ServerFnError> {
+    let client: Result<PrismaClient, NewClientError> = PrismaClient::_builder().build().await;
+    let client = match client {
+        Ok(client) => client,
+        Err(e) => return Err(ServerFnError::ServerError(e.to_string())),
+    };
+
+    let users: Vec<UserData> = match client.user().find_many(vec![]).exec().await {
+        Ok(users) => users,
+        Err(e) => return Err(ServerFnError::ServerError(e.to_string())),
+    };
+
+    Ok(users)
+}
 //
 // #[server(AddUsers, "/api")]
 // pub async fn add_users(id: String) -> Result<(), ServerFnError> {
